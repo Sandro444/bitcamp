@@ -1,0 +1,67 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("https://www.desktopbackground.org/p/2010/05/21/20986_football-wallpaper-football-wallpapers-football-backgrounds-free_1280x720_h.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.text{
+
+    text-align: center;
+}
+#blur{
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    background-color: rgba(137, 43, 226, 0.274);
+    z-index: -1;
+}
+#survey{
+    z-index: 1;
+    width: 60%;
+    border: 2px solid rgb(85, 2, 85);
+    height: fit-content;
+    min-height: 60vh;
+    margin: auto;
+    padding: 4vw;
+    background-color: rgba(35, 1, 68, 0.493);
+}
+#survey > *{
+    z-index: 1;
+}
+
+#survey-form{
+    display: flex;
+    flex-direction: column;
+
+    color: rgb(154, 196, 2);
+}
+
+label{
+    color:rgb(255, 72, 0);
+}
+
+.fg > label{
+    line-height: 30px;
+    color:rgb(154, 196, 2) ;
+}
+.fg >label> input{
+    padding: 10px 15px;
+    width: 80%;
+}
+select{
+    width: 80%;
+    padding: 10px 15px;
+}
+textarea ,button{
+    width: 80%;
+    padding: 10px 15px;
+}
+
+button{
+    width: 20%;
+}
+

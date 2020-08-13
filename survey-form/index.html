@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="blur">
+    </div>
+    <div class="text">
+        <h1 id="title">Survey Form</h1>
+        <p id="description">my survey form</p>
+    </div>
+    <div id="survey">
+        
+        <form id="survey-form">
+            <div class="fg">
+                <label for="name" id="name-label">Enter Name<br />
+                <input type="text" required id="name" placeholder="name"></label>
+            </div>
+            <div class="fg">
+                
+                <label for="email" id="email-label">Enter eMail<br />
+                <input type="email" required id="email" placeholder="email"></label>
+            </div>
+            <div class="fg">
+                <label for="number" id="number-label">Enter Age<br />
+                <input type="number" required id="number" placeholder="age" min="18" max="100"></label>
+            </div>
+            
+            <div>
+            <h4>How many teams do you support? </h4>
+            <select id="dropdown">
+                <option>One</option>
+                <option>Two</option>
+                <option>Three</option>
+            </select>
+            </div>
+
+            <div>
+            <h4>Which team is better?</h4>
+            <label for="rd">Real Dankara
+            <input type="radio" name="club" value="Real Dankara"></label>
+            <label for="rm">Real Madrid
+            <input type="radio" name="club" value="Real Madrid"></label>
+            </div>
+
+            <div>
+            <h4>Whats is your Favourite position?</h4>
+            <label for="gk"><input type="checkbox" value="GK">GK</label>
+            <label for="df"><input type="checkbox" value="Defender">Defender</label>
+            <label for="mf"><input type="checkbox" value="Midfielder">Midfielder</label>
+            <label for="fw"><input type="checkbox" value="Forward">Forward</label>
+            <div>
+
+            <div>
+            <h4>Leave optional message</h4>
+            <textarea cols="50" rows="10" style="resize: none;"></textarea>
+            </div>
+            
+            <button id="submit">submit</button>
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+</html>

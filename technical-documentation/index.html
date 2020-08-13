@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Box Model</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @media (max-width: 815px){
+            #navbar{
+                float: none;
+                width: 100%;
+                border: none;
+                height: fit-content;
+                position: sticky;
+                border-bottom: none;
+            }
+            #main-doc{
+                float: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <header>CSS Box Model</header>
+        <ul>
+            <li><a href="#introduction" class="nav-link f">Introduction</a></li>
+            <li><a href="#clockwise_model" class="nav-link">Clockwise Model</a></li>
+            <li><a href="#margin" class="nav-link">Padding</a></li>
+            <li><a href="#border" class="nav-link">Border</a></li>
+            <li><a href="#padding" class="nav-link">Margin</a></li>
+            <li><a href="#content" class="nav-link">Content</a></li>
+            <li><a href="#border_box" class="nav-link">Border Box</a></li>
+            <li><a href="#content_box" class="nav-link">Content Box</a></li>
+        </ul>
+    </nav>
+    <main id="main-doc">
+        <section class="main-section" id="introduction">
+            <header>Introduction</header>
+            <p>In this documentation, we will discuss CSS properties that
+            correspond to box model. We will discuss different parts of CSS box model and also, box-sizing properties.
+            The content of this documentation will be:
+            <ul>
+                <li>Clockwise Model</li>
+                <li>Margin</li>
+                <li>Border</li>
+                <li>Padding</li>
+                <li>Content</li>
+                <li>Border Box</li>
+                <li>Content Box</li>
+            </ul>
+        </p></section>
+        <hr>
+        <section class="main-section" id="clockwise_model">
+            <header>Clockwise Model</header>
+            <p> 
+                Until we start defining our margins and paddings, it would be better, if we talked
+                little bit about shorthand rules. Clockwise rule in css, allow us to define box model properties,
+                for example margin, in one line. When defining property in one line, it is defined as follows:
+                top, left, bottom, right. When defining to props, they will go like this: top&bottom, left&right.
+            </p>
+            <code><b>margin:</b> <i>5px 0 5px 0;</i></code>
+            <code><b>padding:</b> <i>5px 4px ;</i></code>
+        </section>
+
+        <hr>
+        <section class="main-section" id="margin">
+            <header>Margin</header>
+            <p> 
+                Margin is outer space of the element. By defining margin, you can define the value,
+                that will not be overriden by other element in normal flow. However, margin can be overriden
+                by elements, that have position of absolute or fixed, but most of the time, it is not the case.
+            </p>
+            <code><b>margin:</b> <i>5px 0;</i></code>
+        </section>
+
+        <hr>
+        <section class="main-section" id="border">
+            <header>Border</header>
+            <p>
+                Border is a part that is across the box. Border has properties: thickness, color, style, radius, etc. It is defined
+                like this
+            </p>
+            <code>
+                <b>border:</b> <i>1px solid green;</i> 
+                <br><b>border:</b> <i>10px dotted red;</i> 
+                <br><b>border:</b> <i>3px groove blue;</i>
+            </code>
+        </section>
+        <hr>
+        <section class="main-section" id="padding">
+            <header>Padding</header>
+            <p>
+                Padding is space, that is between border and content. You can define padding with one line, or multiple lines. 
+            </p> 
+            <code><b>padding:</b> <i>1px 3px 5px 1px;</i></code>
+        </section>
+        <hr>
+
+        <section class="main-section" id="content">
+            <header>Content</header>
+            <p>Content is area, that is left over, after you define, or not define other properties. Content
+                is main section of the box. It doesn't need defining
+            </p>
+        </section>
+        <hr>
+
+
+        <section class="main-section" id="border_box">
+            <header>Border Box</header>
+            <p>
+                There are two types of box sizing, border-box and content-box. Border box means, that your
+                width includes borders, when defining box width.
+            </p>
+            <code><b>box-sizing:</b> <i>border-box;</i></code>
+            <p>It is supported in all browsers</p>
+        </section>
+        <hr>
+
+        <section class="main-section" id="content_box">
+            <header>Content Box</header>
+            <p>
+                There are two types of box sizing, border-box and content-box. Content box means, that your
+                width doesn't include borders, when defining box width. It only includes content and padding
+            </p>
+            <code><b>box-sizing:</b> <i>content-box;</i></code>
+            <p>It is supported in all browsers</p>
+        </section>
+        <hr>
+    </main>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+</html>
