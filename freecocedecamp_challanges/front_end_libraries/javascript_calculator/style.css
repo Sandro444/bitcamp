@@ -1,0 +1,131 @@
+body{
+    background-color: grey;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin:0;
+    padding:0    
+}
+
+#calculator{
+    width: 350px;
+    height: 450px;
+    border: 2px solid black;
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+    background-color: black;
+    padding: 3px;
+}
+
+
+#exp{
+    display: block;
+    height: 40%;
+    max-height: fit-content;
+    box-sizing: border-box;
+    background-color: black;
+    width: 100%;
+    padding: 0;
+    padding-right: 5px;
+    font-family: monospace;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: orange;
+}
+#display{
+    display: block;
+    height: 60%;
+    max-height: fit-content;
+    box-sizing: border-box;
+    background-color: black;
+    width: 100%;
+    padding: 0;
+    padding-right: 5px;
+    font-family: monospace;
+    font-size: 25px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#buttons{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(5,1fr);
+}
+#buttons>button{
+    font-size: 20px;
+    background-color: #4d4d4d;
+    outline: none;
+    border: 1px solid black;
+    border-top: none;
+    border-left: none;
+    cursor: pointer;
+    color: white;
+}
+#buttons>button:hover{
+    border: 1px solid grey;
+    clear: both;
+    color: black;
+    box-sizing: content-box;
+}
+#clear{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    background-color: rgb(172, 57, 57) !important;
+    border:none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    border: 1px solid grey;
+}
+#clear:hover{
+    border: 1px solid black;
+    color: black;
+}
+#zero{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+#equals{
+    grid-row-start: 4;
+    grid-row-end: 6;
+    grid-column-start: 4;
+    grid-column-end: 5;
+    background-color: rgb(0, 68, 102) !important;
+}
+#subtract{
+    grid-column-start: 4;
+    grid-column-end: 5;
+    background-color: rgb(102, 102, 102) !important;
+}
+#add{
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    background-color: rgb(102, 102, 102) !important;
+}
+#multiply{
+    background-color: rgb(102, 102, 102) !important;
+}
+#divide{
+    background-color: rgb(102, 102, 102) !important;
+}
+#seven{
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+#eight{
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+#nine{
+    grid-row-start: 2;
+    grid-row-end: 3;
+}

@@ -1,0 +1,44 @@
+body{
+    background-color: white;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+li, ul{
+    margin-left: 15px
+}
+#editor{
+    height: 400px;
+    width: 800px;
+    margin: 0 auto;
+    resize: none;
+    padding-left: 15px;
+    border: 1px solid red;
+    margin: 20px 0;
+    -webkit-box-shadow: 10px 10px 18px -8px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 18px -8px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 18px -8px rgba(0,0,0,0.75);
+}
+#editor:focus{
+    outline:none;
+}
+.react{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#preview{
+    margin-bottom: 20px;
+    width: 90%;
+    height: fit-content;
+    border: 1px solid red;
+    padding-top: 15px;
+    -webkit-box-shadow: 10px 10px 18px -8px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 18px -8px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 18px -8px rgba(0,0,0,0.75);
+}
+#preview>*{
+    padding: 15px;
+}

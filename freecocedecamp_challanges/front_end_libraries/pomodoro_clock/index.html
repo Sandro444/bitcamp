@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Clock</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://kit.fontawesome.com/aa8f996152.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="root">
+
+    </div>
+    <p style="color: #010027">by sandro tsereteli</p>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js" ></script>
+    <script type="text/babel">
+        
+        class Clock extends React.Component{
+            constructor(props){
+                super(props)
+                this.state = {
+                    currentMode: "session",
+                    timer: undefined,
+                    sessionExact: 1500,
+                    breakExact: 300,
+                    timerStarted: false,
+                    sessionMinutes: 25,
+                    breakMinutes: 5,
+                }
+            }
+            
+            timerFuncs = () => {
+                if(this.state.timerStarted == false){
+                    let timerN = setInterval(this.decrementTime,1000);
+                    this.setState({
+                        timer: timerN,
+                        timerStarted: true
+                    })
+                    timerN = undefined
+                } else{
+                    let timerN = this.state.timer
+                    clearInterval(timerN)
+                    this.setState({
+                        timer: timerN,
+                        timerStarted: false
+                    })
+                }
+                
+
+            }
+
+            decrementTime = () => {
+                if(this.state.currentMode == "session"){
+                    if(this.state.sessionExact > 0){
+                        let ses = this.state.sessionExact;
+                        ses -= 1;
+                        if(ses < 60){
+                            let timer = document.getElementById("timer-label")
+                            let j = document.getElementById("time-left")
+                            timer.style.color = "rgb(158, 0, 0)"
+                            j.style.color = "rgb(158, 0, 0)"
+
+                        }
+                        this.setState({
+                            sessionExact: ses,
+                            timerStarted: true
+                        })
+                    }
+                    else{
+                        let sound = document.getElementById("beep")
+                        sound.play()
+                        setTimeout(()=>{sound.pause()}, 3000)
+                        let timer = document.getElementById("timer-label")
+                        let j = document.getElementById("time-left")
+                        timer.style.color = "white"
+                        j.style.color = "white"
+                        this.setState({
+                            currentMode: "break",
+                            sessionExact: this.state.sessionMinutes * 60
+                        }) 
+                    }
+                    
+                } else if(this.state.currentMode == "break"){
+                    if(this.state.breakExact > 0){
+                        let brk = this.state.breakExact;
+                        brk -= 1;
+                        if(brk < 60){
+                            let timer = document.getElementById("timer-label")
+                            let j = document.getElementById("time-left")
+                            timer.style.color = "rgb(158, 0, 0)"
+                            j.style.color = "rgb(158, 0, 0)"
+                        }
+                        this.setState({
+                            breakExact: brk,
+                        })
+                        
+                    } else{
+                        let sound = document.getElementById("beep")
+                        sound.play()
+                        setTimeout(()=>{sound.pause()}, 3000)
+                        let timer = document.getElementById("timer-label")
+                        let j = document.getElementById("time-left")
+                        timer.style.color = "white"
+                        j.style.color = "white"
+                        this.setState({
+                            currentMode: "session",
+                            timerStarted: false,
+                            breakExact: this.state.breakMinutes * 60
+                        }) 
+                    }
+                }
+            }
+
+            returnExactSession = () => {
+                let time = this.state.sessionExact
+                let minutes = Math.floor(time/60)
+                let seconds = time - (minutes * 60)
+                if(minutes < 10){
+                    minutes = minutes.toString()
+                    minutes = minutes.split("")
+                    minutes.unshift("0")
+                    minutes = minutes.join("")
+                }
+                if(seconds < 10){
+                    seconds = seconds.toString()
+                    seconds = seconds.split("")
+                    seconds.unshift("0")
+                    seconds = seconds.join("")
+                }
+                return(
+                    <span> {minutes + ":" + seconds} </span>
+                )
+            }
+            returnExactTime = () => {
+                if(this.state.currentMode == "session"){
+                    let value = this.returnExactSession()
+                    return value
+                } else if(this.state.currentMode == "break"){
+                    let value = this.returnExactBreak()
+                    return value
+                }
+            }
+            returnExactBreak = () => {
+                let time = this.state.breakExact
+                let minutes = Math.floor(time/60)
+                let seconds = time - (minutes * 60)
+                if(minutes < 10){
+                    minutes = minutes.toString()
+                    minutes = minutes.split("")
+                    minutes.unshift("0")
+                    minutes = minutes.join("")
+                }
+                if(seconds < 10){
+                    seconds = seconds.toString()
+                    seconds = seconds.split("")
+                    seconds.unshift("0")
+                    seconds = seconds.join("")
+                }
+                return(
+                    <span> {minutes + ":" + seconds} </span>
+                )
+            }
+
+            
+
+            sessionMinutes = () => {
+                let time = this.state.sessionExact
+                return Math.floor(time/60)
+            }
+
+            breakMinutes = () => {
+                let time = this.state.breakExact
+                return Math.floor(time/60)
+            }
+
+            decrementSes = () => {
+                if(this.state.sessionMinutes > 1){
+                    if(this.state.timerStarted == false){
+                        let ses = this.state.sessionMinutes
+                        let sess = ses * 60
+                        sess-=60
+                        ses -= 1
+                        this.setState({
+                            sessionMinutes: ses,
+                            sessionExact: sess
+                        })
+                    }
+                    
+                }
+            }
+
+            incrementSes = () => {
+                if(this.state.sessionMinutes < 60){
+                    if(this.state.timerStarted == false){
+                        let ses = this.state.sessionMinutes
+                        let sess = ses * 60
+                        sess+=60
+                        ses += 1
+                        this.setState({
+                            sessionMinutes: ses,
+                            sessionExact: sess
+                        })
+                    }
+                    
+                }
+                
+            }
+
+            incrementBrk = () => {
+                if(this.state.breakMinutes < 60){
+                    if(this.state.timerStarted == false){
+                        let ses = this.state.breakMinutes
+                        let sess = ses * 60
+                        sess+=60
+                        ses += 1
+                        this.setState({
+                            breakMinutes: ses,
+                            breakExact: sess
+                        })
+                    }
+                    
+                }
+            }
+
+            decrementBrk = () => {
+                if(this.state.breakMinutes > 1){
+                    if(this.state.timerStarted == false){
+                        let ses = this.state.breakMinutes
+                        let sess = ses * 60
+                        sess-=60
+                        ses -= 1
+                        this.setState({
+                            breakMinutes: ses,
+                            breakExact: sess
+                        })
+                    }
+                    
+                }
+            }
+
+            resetTimer = () => {
+                clearInterval(this.state.timer
+                )
+                let sound = document.getElementById("beep")
+                let timer = document.getElementById("timer-label")
+                let j = document.getElementById("time-left")
+                timer.style.color = "white"
+                j.style.color = "white"
+                sound.pause()
+                sound.currentTime = 0;
+                this.setState({
+                    sessionExact: 1500,
+                    breakExact: 300,
+                    sessionMinutes: 25,
+                    breakMinutes: 5,
+                    timerStarted: false,
+                    currentMode: "session",
+                    timer: undefined
+                })
+            }
+            render(){
+                return(
+                    <div id="pomodoro">
+                        <h1 style={{color:"white"}}>Pomodoro Clock</h1>
+                        <div style={{color:"white"}} id="upper-time">
+                            <div id="breaks">
+                                <div id="break-label">
+                                    Break Length
+                                </div>
+                                <div id="break-controls">
+                                    <div className="break-decrement"><button style={{color:"white"}}  id="break-decrement" onClick={()=>this.decrementBrk()}><i className="fa fa-arrow-down fa-2x"></i></button></div>
+                                    <span id="break-length">{this.state.breakMinutes}</span>
+                                    <div className="break-increment"><button style={{color:"white"}}  id="break-increment"onClick={()=>this.incrementBrk()}><i className="fa fa-arrow-up fa-2x"></i></button></div>
+                                </div>
+                                
+                            </div>
+                            <div id="sessions">
+                                <div id="session-label">
+                                    Session Length
+                                </div>
+                                <div id="ses-controls">
+                                    <div className="session-decrement"><button style={{color:"white"}}  id="session-decrement" onClick={()=>this.decrementSes()}><i className="fa fa-arrow-down fa-2x"></i></button></div>
+                                    <span id="session-length">{this.state.sessionMinutes}</span>
+                                    <div className= "session-increment"><button style={{color:"white"}}  id="session-increment" onClick={()=>this.incrementSes()}><i className="fa fa-arrow-up fa-2x"></i></button></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="lower-time">
+                            <div id="timer-label" style={{color:"white"}} >
+                                {this.state.currentMode}
+                            </div>
+                            <span style={{color:"white"}}  id="time-left" >{this.returnExactTime()}</span>
+                        </div>
+                        <div id="timer">
+                            <div className="start_stop"><button style={{color:"white"}}  id="start_stop" onClick={()=>this.timerFuncs()}><i className="fa fa-play fa-2x"></i><i className="fa fa-pause fa-2x"></i></button></div>
+                            <div className="reset"><button style={{color:"white"}}  id="reset" onClick={()=>this.resetTimer()}><i className="fa fa-refresh fa-2x"></i></button></div>
+                        </div> 
+                        <audio id="beep" src="https://www.fesliyanstudios.com/play-mp3/4383"></audio>
+                    </div>
+                    
+                )
+            }
+        }
+
+        ReactDOM.render(<Clock /> , document.getElementById("root"));
+    </script>
+    
+</body>
+</html>

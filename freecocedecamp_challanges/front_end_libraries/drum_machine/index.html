@@ -1,0 +1,315 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Drum Machine</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    <div id="drum-machine">
+        
+    </div>
+    
+    <script type="text/babel">
+
+        class Drum extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={
+                    volume: 1,
+                    on: false,
+                    display: ""
+                }
+            }
+            componentDidMount(){
+                this.setState({
+                    target: document.getElementById("Test_Audio")
+                })
+                document.addEventListener("keypress", this.bindKeys)
+            }
+
+            bindKeys = (e)=>{
+                    if (e.keyCode === 113 || e.keyCode === 81) {
+                        let btn = document.getElementById("sound 1")
+
+                btn.style.backgroundColor = "red"
+                btn.style.color = "white"
+
+                setTimeout(()=>{
+                    btn.style.backgroundColor = "white"
+                    btn.style.color = "red"
+                },100)
+                        if(this.state.target) {
+                    
+                    this.state.target.pause()
+                    this.state.target.currentTime = 0;
+                }
+                        this.setState({
+                            target: document.getElementById("Q")
+                        },this.play)
+                    } else if(e.keyCode === 119 || e.keyCode === 87){
+                        let btn = document.getElementById("sound 2")
+
+                btn.style.backgroundColor = "red"
+                btn.style.color = "white"
+
+                setTimeout(()=>{
+                    btn.style.backgroundColor = "white"
+                    btn.style.color = "red"
+                },100)
+                        if(this.state.target) {
+                    
+                    this.state.target.pause()
+                    this.state.target.currentTime = 0;
+                }
+                        this.setState({
+                            target: document.getElementById("W")
+                        },this.play)
+                    } else if(e.keyCode === 101 || e.keyCode === 69 ){
+                        let btn = document.getElementById("sound 3")
+
+                btn.style.backgroundColor = "red"
+                btn.style.color = "white"
+
+                setTimeout(()=>{
+                    btn.style.backgroundColor = "white"
+                    btn.style.color = "red"
+                },100)
+                        if(this.state.target) {
+                    
+                    this.state.target.pause()
+                    this.state.target.currentTime = 0;
+                }
+                        this.setState({
+                            target: document.getElementById("E")
+                        },this.play)
+                    } else if(e.keyCode === 97 || e.keyCode === 65){
+                        let btn = document.getElementById("sound 4")
+
+                btn.style.backgroundColor = "red"
+                btn.style.color = "white"
+
+                setTimeout(()=>{
+                    btn.style.backgroundColor = "white"
+                    btn.style.color = "red"
+                },100)
+                        if(this.state.target) {
+                    
+                    this.state.target.pause()
+                    this.state.target.currentTime = 0;
+                }
+                        this.setState({
+                            target: document.getElementById("A")
+                        },this.play)
+                    } else if(e.keyCode === 115 || e.keyCode === 83){
+                        let btn = document.getElementById("sound 5")
+
+                btn.style.backgroundColor = "red"
+                btn.style.color = "white"
+
+                setTimeout(()=>{
+                    btn.style.backgroundColor = "white"
+                    btn.style.color = "red"
+                },100)
+                        if(this.state.target) {
+                    
+                    this.state.target.pause()
+                    this.state.target.currentTime = 0;
+                }
+                        this.setState({
+                            target: document.getElementById("S")
+                        },this.play)
+                    } else if(e.keyCode === 100 || e.keyCode === 68){
+                        let btn = document.getElementById("sound 6")
+
+                btn.style.backgroundColor = "red"
+                btn.style.color = "white"
+
+                setTimeout(()=>{
+                    btn.style.backgroundColor = "white"
+                    btn.style.color = "red"
+                },100)
+                        if(this.state.target) {
+                    
+                    this.state.target.pause()
+                    this.state.target.currentTime = 0;
+                }
+                        this.setState({
+                            target: document.getElementById("D")
+                        },this.play)
+                    } else if(e.keyCode === 122 || e.keyCode === 90){
+                        let btn = document.getElementById("sound 7")
+
+                btn.style.backgroundColor = "red"
+                btn.style.color = "white"
+
+                setTimeout(()=>{
+                    btn.style.backgroundColor = "white"
+                    btn.style.color = "red"
+                },100)
+                        if(this.state.target) {
+                    
+                    this.state.target.pause()
+                    this.state.target.currentTime = 0;
+                }
+                        this.setState({
+                            target: document.getElementById("Z")
+                        },this.play)
+                    } else if(e.keyCode === 120 || e.keyCode === 88){
+                        let btn = document.getElementById("sound 8")
+
+                btn.style.backgroundColor = "red"
+                btn.style.color = "white"
+
+                setTimeout(()=>{
+                    btn.style.backgroundColor = "white"
+                    btn.style.color = "red"
+                },100)
+                        if(this.state.target) {
+                    
+                    this.state.target.pause()
+                    this.state.target.currentTime = 0;
+                }
+                        this.setState({
+                            target: document.getElementById("X")
+                        },this.play)
+                    } else if(e.keyCode === 99 || e.keyCode === 67){
+                        let btn = document.getElementById("sound 9")
+
+                btn.style.backgroundColor = "red"
+                btn.style.color = "white"
+
+                setTimeout(()=>{
+                    btn.style.backgroundColor = "white"
+                    btn.style.color = "red"
+                },100)
+                        this.setState({
+                            target: document.getElementById("C")
+                        },this.play)
+                    }
+            }
+            play = () => {
+                if(this.state.target) {
+                    this.state.target.pause()
+                }
+                this.state.target.play()
+            }
+            setTargetVolume = () => {
+                this.state.target.volume = this.state.volume;
+            }
+            getVolume = (e) => {
+                if(this.state.target){
+                this.setState({
+                    volume: e.target.value,
+                    display: Math.floor(e.target.value*100)
+                },this.setTargetVolume)
+                } else{
+                    this.setState({
+                        volume: e.target.value,
+                        display: Math.floor(e.target.value*100)
+                    })
+                }
+            }
+            loger = (e) => {
+                let btn = document.getElementById(e.target.id)
+
+                btn.style.backgroundColor = "red"
+                btn.style.color = "white"
+
+                setTimeout(()=>{
+                    btn.style.backgroundColor = "white"
+                    btn.style.color = "red"
+                },100)
+                if(this.state.target) {
+                    
+                    this.state.target.pause()
+                    this.state.target.currentTime = 0;
+                }
+                this.setState({
+                    target: e.target.childNodes[1],
+                    display: e.target.id
+                },this.play)
+            }
+            drawPads = () => {
+                return(
+                    <React.Fragment>
+                        <button className="drum-pad" id="sound 1" onClick={this.loger}>Q
+                            <audio className="clip" src="https://www.fesliyanstudios.com/play-mp3/6714" style={{display:"none"}} id="Q">  
+                            </audio>
+                        </button>
+                        <button className="drum-pad" id="sound 2" onClick={this.loger}>W
+                            <audio className="clip" src="https://www.fesliyanstudios.com/play-mp3/6715" style={{display:"none"}} id="W" controls>  
+                            </audio>
+                        </button>
+                        <button className="drum-pad" id="sound 3" onClick={this.loger}>E
+                            <audio className="clip" src="https://www.fesliyanstudios.com/play-mp3/6716" style={{display:"none"}} id="E" controls>   
+                            </audio>
+                        </button>
+
+                        <button className="drum-pad" id="sound 4" onClick={this.loger}>A
+                            <audio className="clip" src="https://www.fesliyanstudios.com/play-mp3/6773" style={{display:"none"}} id="A" controls>  
+                            </audio>
+                        </button>
+                        <button className="drum-pad" id="sound 5" onClick={this.loger}>S
+                            <audio className="clip" src="https://www.fesliyanstudios.com/play-mp3/6774" style={{display:"none"}} id="S" controls>  
+                            </audio>
+                        </button>
+                        <button className="drum-pad" id="sound 6" onClick={this.loger}>D
+                            <audio className="clip" src="https://www.fesliyanstudios.com/play-mp3/6775" style={{display:"none"}} id="D" controls>  
+                            </audio>
+                        </button>
+
+                        <button className="drum-pad" id="sound 7" onClick={this.loger}>Z
+                            <audio className="clip" src="https://www.fesliyanstudios.com/play-mp3/6695" style={{display:"none"}} id="Z" controls>  
+                            </audio>
+                        </button>
+                        <button className="drum-pad" id="sound 8" onClick={this.loger}>X
+                            <audio className="clip" src="https://www.fesliyanstudios.com/play-mp3/6696" style={{display:"none"}} id="X" controls>  
+                            </audio>
+                        </button>
+                        <button className="drum-pad" id="sound 9" onClick={this.loger}>C
+                            <audio className="clip" src="https://www.fesliyanstudios.com/play-mp3/6763" style={{display:"none"}} id="C" controls>  
+                            </audio>
+                        </button>
+                    </React.Fragment>
+                )
+            }
+            render(){
+                return(
+                    <div id="drum">
+                        <div id="drum-grid">
+                            <div id="pads">
+                                {this.drawPads()}
+                            </div>
+                            <div id="controls">
+                                <div id="display">
+                                    <div id="displaypad">
+                                        {this.state.display !==""? this.state.display: "drum machine"}
+                                    </div>
+                                    <p style={{textAlign:"center",marginTop:100,color:"red"}}>by sandro tsereteli</p>
+
+                                </div>
+                                <div className="volume">
+                                    <input onChange={this.getVolume} type="range" id="vol" name="vol" step="0.01" min="0" max="1" />
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                )
+                
+            }
+        }
+        
+
+        ReactDOM.render(<Drum />, document.getElementById("drum-machine"))
+    
+    </script>
+</body>
+</html>

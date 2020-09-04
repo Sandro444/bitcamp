@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote Machine</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://kit.fontawesome.com/aa8f996152.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="quote-box">
+
+    </div>
+
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js" ></script>
+    <script type="text/babel">
+        
+        function Quote(props){
+            let au = props.author? props.author.split(" ").join("") : "UknownAuthor"
+            let href =  "https://twitter.com/intent/tweet?hashtags=quotes,"+au+"&related=freecodecamp&text="+props.text;
+            return(
+                <div id="quote">
+                    <p id="text" style={{fontSize: 30}}> <i className="fa fa-quote-left" style={{fontSize: 40}}></i> {props.text} </p>
+                    <p id="author"> - {props.author?props.author:"Unknown Author"} </p>
+                    <div className="buttons">
+                        <a target="_blank" id="tweet-quote" href={href}><i className="fab fa-twitter"></i></a>
+                        <i></i>
+                        <button id="new-quote" onClick={props.rerender
+                        }> Next Quote </button>
+                        
+                        
+                    </div>
+                </div>
+            )
+        }
+
+        class App extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    quotes : [],
+                    count: 0
+                }
+            }
+            componentDidMount(){
+                this.fetchQuotes();
+            }
+            randColor = () => {
+                
+                let bg_colour = Math.floor(Math.random() * 16777215).toString(16);
+                bg_colour = "#" + ("000000" + bg_colour).slice(-6);
+                return bg_colour;
+            
+    
+            }
+            fetchQuotes = () => {
+                fetch("https://type.fit/api/quotes")
+                .then(res=>res.json())
+                .then(data=>this.setState({
+                    quotes:data
+                }))
+                .then(()=>this.rerender())
+            }
+            rerender = () => {
+                this.setState({
+                    count: this.state.count + 1
+                })
+                let cl = this.randColor();
+                $( "#text" ).animate({
+                    color: cl
+                },1000);
+                $( "#author" ).animate({
+                    color: cl
+                },1000);
+                $( "#new-quote" ).animate({
+                    backgroundColor: cl
+                },1000);
+                $( "#tweet-quote" ).animate({
+                    backgroundColor: cl
+                },1000);
+                $("body").animate({
+                    backgroundColor: cl
+                },1000)
+            }
+            singleQuote = () => {
+                let quote = this.state.quotes.length > 0? this.state.quotes[Math.floor(Math.random() * this.state.quotes.length)]:"Loading...";
+                return (
+                    typeof(quote) == "string"? quote: <Quote author={quote.author} text={quote.text}
+                    rerender={this.rerender}
+                    />
+                )
+            }
+            render(){
+
+                return(
+                    <div>
+                        {
+                            this.singleQuote()
+                        }
+                        <p style={{color:"white",textAlign:"center", paddingTop:15}}>by sandro tsereteli</p>
+                    </div>
+                )
+            }
+        };
+
+        ReactDOM.render(<App /> , document.getElementById("quote-box"));
+    </script>
+    
+</body>
+</html>
