@@ -36,8 +36,9 @@ app.listen(port, function () {
 });
 
 /* Database Connection */
-let uri = 'mongodb+srv://sandro:nocave2019@cluster-sandro.jw71b.mongodb.net/db1?retryWrites=true&w=majority'
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+//WRITE YOUR MONGO URI
+const URI = "YOUR_URI"
+mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 let urlSchema = new mongoose.Schema({
   original : {type: String, required: true},
