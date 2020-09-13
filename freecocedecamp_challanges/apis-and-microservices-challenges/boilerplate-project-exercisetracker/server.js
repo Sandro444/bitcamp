@@ -5,7 +5,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 
 const mongoose = require('mongoose')
-const URI = "mongodb+srv://sandro:nocave2019@cluster-sandro.jw71b.mongodb.net/db1?retryWrites=true&w=majority"
+//WRITE YOUR MONGO URI
+const URI = "YOUR_URI"
 mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true }); 
 
 app.use(cors())
